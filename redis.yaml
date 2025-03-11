@@ -1,0 +1,15 @@
+- name: Install Redis on Redis VM
+  hosts: redis
+  become: yes
+  tasks:
+    - name: Install Redis
+      apt:
+        name: redis-server
+        state: present
+        update_cache: yes
+
+    - name: Enable and start Redis
+      systemd:
+        name: redis
+        enabled: yes
+        state: started
